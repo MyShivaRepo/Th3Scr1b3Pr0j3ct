@@ -1,0 +1,194 @@
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix scribe: <urn:scribe:vocabulary#> .
+
+# =============================================================================
+# Référentiel initial — Th3Sr1b3Pr0j3ct  (v1.1)
+# 12 entités conceptuelles issues de la pratique de Bernard Chabot
+# =============================================================================
+
+# --- 1. xLM — eXtended Lifecycle Management -----------------------------------
+
+<urn:concept:scribe:A1B2C3D4-0001-0001-0001-000000000001#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "eXtended Lifecycle Management"@fr ;
+    skos:prefLabel      "eXtended Lifecycle Management"@en ;
+    skos:altLabel       "xLM"@fr ;
+    skos:altLabel       "xLM"@en ;
+    skos:definition     """xLM (eXtended Lifecycle Management) est un cadre conceptuel développé par Bernard Chabot qui étend le PLM classique en intégrant les dimensions sémantiques, ontologiques et d'intelligence artificielle dans la gestion du cycle de vie des produits et des connaissances. Il articule la gestion du cycle de vie avec des technologies du Web Sémantique (OWL, SWRL) et des approches d'IA explicable (XAI) pour créer un système de management unifié. L'objectif est de dépasser les limitations des PLM traditionnels en permettant une traçabilité complète du sens et des décisions tout au long du cycle de vie."""@fr ;
+    skos:scopeNote      """xLM a été formalisé à partir des expériences industrielles de Bernard Chabot dans les domaines du PLM, de l'ingénierie système et de la gestion des connaissances d'entreprise. Il constitue le cadre intégrateur du projet SEAMLESS disponible sur GitHub (iPlumb3r/SEAMLESS)."""@fr ;
+    scribe:isExtensionOf <urn:concept:scribe:A1B2C3D4-0004-0004-0004-000000000004#v1> ;
+    scribe:articulatesWith <urn:concept:scribe:A1B2C3D4-0007-0007-0007-000000000007#v1> ;
+    scribe:usesTechnology <urn:concept:scribe:A1B2C3D4-0005-0005-0005-000000000005#v1> ;
+    scribe:usesTechnology <urn:concept:scribe:A1B2C3D4-0006-0006-0006-000000000006#v1> ;
+    scribe:isRepresentedBy [
+        scribe:representation      <urn:concept:scribe:A1B2C3D4-0011-0011-0011-000000000011#v1> ;
+        scribe:representationKind  scribe:Document ;
+        scribe:representationContext "Présentation publique du concept sur GitHub"@fr ;
+        scribe:representationCreatedBy "Bernard Chabot" ;
+        scribe:representationCreatedOn "2018-09-15"^^xsd:date
+    ] .
+
+# --- 2. KRVF — Knowledge Representation & Visualization Framework ------------
+
+<urn:concept:scribe:A1B2C3D4-0002-0002-0002-000000000002#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Knowledge Representation & Visualization Framework"@fr ;
+    skos:prefLabel      "Knowledge Representation & Visualization Framework"@en ;
+    skos:altLabel       "KRVF"@fr ;
+    skos:altLabel       "KRVF"@en ;
+    skos:definition     """KRVF (Knowledge Representation & Visualization Framework) est un cadre méthodologique conçu par Bernard Chabot pour structurer, représenter et visualiser les connaissances d'entreprise de manière formelle et lisible. Il fournit un ensemble de principes, de patterns et d'outils pour modéliser les référentiels conceptuels en s'appuyant sur les standards du Web Sémantique. KRVF vise à rendre les modèles de connaissance à la fois rigoureux pour les machines et accessibles pour les experts métier."""@fr ;
+    skos:scopeNote      """KRVF est l'un des deux cadres fondateurs de la pratique professionnelle de Bernard Chabot en ingénierie des connaissances, l'autre étant REAF. Il nourrit directement la conception de Th3Sr1b3Pr0j3ct."""@fr ;
+    skos:note           """Le 'V' de Visualization est central : KRVF insiste sur l'importance des représentations visuelles comme pont entre la formalisation ontologique et la compréhension humaine."""@fr ;
+    scribe:isFrameworkFor <urn:concept:scribe:A1B2C3D4-0010-0010-0010-000000000010#v1> ;
+    scribe:usesTechnology <urn:concept:scribe:A1B2C3D4-0008-0008-0008-000000000008#v1> ;
+    scribe:isRepresentedBy [
+        scribe:representation      <urn:concept:scribe:A1B2C3D4-0012-0012-0012-000000000012#v1> ;
+        scribe:representationKind  scribe:Diagram ;
+        scribe:representationContext "Diagramme conceptuel illustrant les couches de KRVF"@fr
+    ] .
+
+# --- 3. REAF — Reference Enterprise Architecture Framework -------------------
+
+<urn:concept:scribe:A1B2C3D4-0003-0003-0003-000000000003#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Reference Enterprise Architecture Framework"@fr ;
+    skos:prefLabel      "Reference Enterprise Architecture Framework"@en ;
+    skos:altLabel       "REAF"@fr ;
+    skos:altLabel       "REAF"@en ;
+    skos:definition     """REAF (Reference Enterprise Architecture Framework) est un cadre d'architecture d'entreprise de référence développé par Bernard Chabot. Il organise les composants d'une architecture d'entreprise autour d'invariants métier stables, garantissant la cohérence et la traçabilité des décisions d'architecture dans le temps. REAF distingue ce qui ne change pas (les invariants) de ce qui évolue (les implémentations), permettant une gouvernance durable de l'architecture."""@fr ;
+    skos:scopeNote      """REAF est issu de la pratique industrielle de Bernard Chabot dans l'architecture d'entreprise. Il constitue avec KRVF les deux piliers de son approche méthodologique."""@fr ;
+    scribe:isBuiltUpon <urn:concept:scribe:A1B2C3D4-0009-0009-0009-000000000009#v1> .
+
+# --- 4. PLM — Product Lifecycle Management -----------------------------------
+
+<urn:concept:scribe:A1B2C3D4-0004-0004-0004-000000000004#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Product Lifecycle Management"@fr ;
+    skos:prefLabel      "Product Lifecycle Management"@en ;
+    skos:altLabel       "PLM"@fr ;
+    skos:altLabel       "PLM"@en ;
+    skos:definition     """Le PLM (Product Lifecycle Management) est un ensemble de processus, de méthodes et d'outils permettant de gérer l'intégralité du cycle de vie d'un produit, de sa conception jusqu'à son retrait du marché. Il intègre les données, les processus et les acteurs impliqués à toutes les étapes du cycle de vie dans un système cohérent. Le PLM est largement utilisé dans l'industrie manufacturière pour améliorer la collaboration, réduire les délais de mise sur le marché et maîtriser la complexité des produits."""@fr ;
+    skos:scopeNote      """Le PLM est le domaine applicatif principal de l'expertise industrielle de Bernard Chabot. xLM a été conçu pour en étendre les capacités vers les dimensions sémantiques et cognitives."""@fr .
+
+# --- 5. Ontologie OWL --------------------------------------------------------
+
+<urn:concept:scribe:A1B2C3D4-0005-0005-0005-000000000005#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Ontologie OWL"@fr ;
+    skos:prefLabel      "OWL Ontology"@en ;
+    skos:altLabel       "OWL"@fr ;
+    skos:altLabel       "Web Ontology Language"@en ;
+    skos:definition     """OWL (Web Ontology Language) est un langage du W3C permettant de définir des ontologies formelles sur le Web Sémantique. Il permet d'exprimer des classes, des propriétés, des individus et des axiomes logiques en RDF, ouvrant la voie au raisonnement automatique. OWL est fondé sur les logiques de description (Description Logics) et permet de déduire des connaissances implicites à partir de faits explicites."""@fr ;
+    skos:scopeNote      """OWL est la technologie centrale utilisée dans xLM et KRVF pour formaliser les modèles de connaissance d'entreprise de manière interopérable et raisonnée."""@fr ;
+    scribe:isPartOf <urn:concept:scribe:A1B2C3D4-0008-0008-0008-000000000008#v1> .
+
+# --- 6. Règles SWRL ----------------------------------------------------------
+
+<urn:concept:scribe:A1B2C3D4-0006-0006-0006-000000000006#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Règles métier SWRL"@fr ;
+    skos:prefLabel      "SWRL Business Rules"@en ;
+    skos:altLabel       "SWRL"@fr ;
+    skos:altLabel       "Semantic Web Rule Language"@en ;
+    skos:definition     """SWRL (Semantic Web Rule Language) est un langage du W3C permettant d'exprimer des règles métier sur des ontologies OWL. Il combine la puissance expressive des ontologies OWL avec la capacité des règles Datalog pour permettre des inférences plus expressives que ce que OWL seul autorise. SWRL est utilisé pour encoder des invariants métier et des règles de cohérence au sein des systèmes de gestion des connaissances."""@fr ;
+    skos:scopeNote      """Dans le cadre xLM, les règles SWRL encodent les invariants métier et les règles de cohérence qui gouvernent les relations entre objets du cycle de vie du produit."""@fr ;
+    scribe:extendsTechnology <urn:concept:scribe:A1B2C3D4-0005-0005-0005-000000000005#v1> .
+
+# --- 7. XAI — Intelligence artificielle explicable --------------------------
+
+<urn:concept:scribe:A1B2C3D4-0007-0007-0007-000000000007#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Intelligence artificielle explicable (XAI)"@fr ;
+    skos:prefLabel      "Explainable Artificial Intelligence"@en ;
+    skos:altLabel       "XAI"@fr ;
+    skos:altLabel       "XAI"@en ;
+    skos:definition     """L'IA explicable (XAI — eXplainable Artificial Intelligence) désigne un ensemble de méthodes et de techniques permettant aux systèmes d'intelligence artificielle de rendre leurs décisions compréhensibles par des êtres humains. Elle vise à combler le fossé entre les modèles d'IA performants mais opaques (boîtes noires) et les exigences de transparence, de confiance et de conformité réglementaire. XAI est au cœur de l'approche neuro-symbolique que xLM cherche à intégrer."""@fr ;
+    skos:scopeNote      """L'articulation entre xLM et XAI est fondamentale : xLM fournit le cadre sémantique formalisé dans lequel les décisions de l'IA peuvent être ancrées et expliquées via des ontologies et des règles SWRL."""@fr .
+
+# --- 8. Web Sémantique -------------------------------------------------------
+
+<urn:concept:scribe:A1B2C3D4-0008-0008-0008-000000000008#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Web Sémantique"@fr ;
+    skos:prefLabel      "Semantic Web"@en ;
+    skos:definition     """Le Web Sémantique est une extension du Web proposée par le W3C visant à rendre les données lisibles et interprétables par les machines, et pas seulement par les humains. Il repose sur un ensemble de standards (RDF, RDFS, OWL, SKOS, SPARQL, SHACL) permettant de publier des données structurées et reliées sous forme de graphes. Le Web Sémantique constitue l'infrastructure technique sur laquelle s'appuient KRVF, xLM et Th3Sr1b3Pr0j3ct."""@fr ;
+    skos:scopeNote      """Le Web Sémantique est le dénominateur commun technologique de l'ensemble des cadres méthodologiques de Bernard Chabot. Sa maîtrise est au cœur de son positionnement d'expert en ingénierie des connaissances."""@fr .
+
+# --- 9. Invariant métier -----------------------------------------------------
+
+<urn:concept:scribe:A1B2C3D4-0009-0009-0009-000000000009#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Invariant métier"@fr ;
+    skos:prefLabel      "Business Invariant"@en ;
+    skos:definition     """Un invariant métier est une règle ou une contrainte du domaine d'activité qui reste vraie quelles que soient les évolutions du système ou du contexte opérationnel. Les invariants métier constituent la colonne vertébrale d'une architecture d'entreprise durable : ils permettent de distinguer ce qui doit être préservé (l'invariant) de ce qui peut évoluer (l'implémentation). Dans REAF, les invariants métier guident les décisions d'architecture et assurent la cohérence longitudinale du système."""@fr ;
+    skos:scopeNote      """La notion d'invariant métier est centrale dans la pensée de Bernard Chabot : elle traduit l'idée que la stabilité d'un système repose sur l'identification explicite de ce qui ne doit pas changer, permettant une gestion maîtrisée du changement."""@fr .
+
+# --- 10. Ingénierie des connaissances ----------------------------------------
+
+<urn:concept:scribe:A1B2C3D4-0010-0010-0010-000000000010#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Ingénierie des connaissances"@fr ;
+    skos:prefLabel      "Knowledge Engineering"@en ;
+    skos:altLabel       "KE"@en ;
+    skos:definition     """L'ingénierie des connaissances est une discipline de l'informatique et des sciences cognitives qui s'intéresse à la formalisation, la représentation et l'exploitation des connaissances d'experts dans des systèmes informatiques. Elle combine des méthodes issues de l'intelligence artificielle, de la logique formelle et des sciences de l'information pour construire des référentiels de connaissances exploitables. Bernard Chabot pratique l'ingénierie des connaissances comme activité centrale de son expertise professionnelle, à l'intersection du PLM, de l'architecture d'entreprise et du Web Sémantique."""@fr ;
+    skos:scopeNote      """L'ingénierie des connaissances est le domaine d'application principal de KRVF. Th3Sr1b3Pr0j3ct est lui-même un outil d'ingénierie des connaissances."""@fr .
+
+# --- 11. Document xLM_FR — Représentation de xLM (entité #11) ----------------
+
+<urn:concept:scribe:A1B2C3D4-0011-0011-0011-000000000011#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Document de présentation du concept xLM (français)"@fr ;
+    skos:prefLabel      "xLM concept presentation document (French)"@en ;
+    skos:altLabel       "About_xLM_FR.md"@fr ;
+    skos:definition     """Document Markdown publié sur GitHub par Bernard Chabot décrivant en français le concept xLM (eXtended Lifecycle Management) dans le cadre du projet SEAMLESS. Ce document constitue la référence documentaire publique du concept xLM, accessible sur le dépôt iPlumb3r/SEAMLESS."""@fr ;
+    skos:note           """URL source : https://github.com/iPlumb3r/SEAMLESS/blob/master/Analysis/About_xLM_FR.md — Ce document est lui-même une entité conceptuelle documentable, conforme au principe de récursion sujet/objet de Th3Sr1b3Pr0j3ct."""@fr .
+
+# --- 12. Diagramme KRVF couches — Représentation de KRVF (entité #12) --------
+
+<urn:concept:scribe:A1B2C3D4-0012-0012-0012-000000000012#v1>
+    a scribe:Concept ;
+    scribe:hasStatus    scribe:Active ;
+    scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    scribe:modifiedAt   "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
+    skos:prefLabel      "Diagramme illustrant les couches de KRVF"@fr ;
+    skos:prefLabel      "KRVF layers diagram"@en ;
+    skos:altLabel       "Diagramme KRVF"@fr ;
+    skos:definition     """Diagramme conceptuel représentant l'architecture en couches du KRVF (Knowledge Representation & Visualization Framework). Ce diagramme illustre comment les différentes couches du cadre s'articulent pour produire des représentations de connaissances à la fois formellement rigoureuses et visuellement lisibles."""@fr ;
+    skos:note           """Cette entité illustre le principe de récursion sujet/objet de Th3Sr1b3Pr0j3ct : KRVF (sujet) est représenté par ce diagramme (objet), qui est lui-même une entité documentable pouvant avoir ses propres représentations."""@fr .
