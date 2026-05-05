@@ -214,7 +214,8 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         with cols[1]:
             st.markdown('<div class="btn-del">', unsafe_allow_html=True)
             if st.button("🗑️", key=f"del_{concept.uri}", use_container_width=True):
-                delete_uri = concept.uri
+                st.session_state["confirm_delete_uri"] = concept.uri
+                st.rerun()
             st.markdown("</div>", unsafe_allow_html=True)
 
         cols[2].markdown(
@@ -239,6 +240,25 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
             f'<p style="font-size:11px;color:#6c7086;font-family:monospace;margin:0;">{modified}</p>',
             unsafe_allow_html=True,
         )
+
+        if st.session_state.get("confirm_delete_uri") == concept.uri:
+            st.markdown(
+                f'<div style="background:#2a1a1f;border:1px solid #f38ba8;border-radius:8px;'
+                f'padding:10px 16px;margin:4px 0 6px 0;">'
+                f'<span style="color:#f38ba8;font-weight:700;font-size:13px;">⚠️ Supprimer «&nbsp;{label}&nbsp;» ?</span>'
+                f'<span style="color:#a6adc8;font-size:12px;margin-left:8px;">Cette action est irréversible.</span>'
+                f'</div>',
+                unsafe_allow_html=True,
+            )
+            c1, c2, c3 = st.columns([5, 1, 1])
+            with c2:
+                if st.button("✅ Confirmer", key=f"confirm_{concept.uri}", use_container_width=True):
+                    delete_uri = concept.uri
+                    st.session_state.pop("confirm_delete_uri", None)
+            with c3:
+                if st.button("❌ Annuler", key=f"cancel_{concept.uri}", use_container_width=True):
+                    st.session_state.pop("confirm_delete_uri", None)
+                    st.rerun()
 
         st.markdown('<hr class="row-sep">', unsafe_allow_html=True)
 
