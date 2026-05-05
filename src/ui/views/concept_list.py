@@ -26,6 +26,11 @@ _STATUS_BADGE: dict[str, str] = {
 
 _CSS = """
 <style>
+/* ── Alignement vertical centré dans chaque ligne ── */
+div[data-testid="stHorizontalBlock"] {
+    align-items: center !important;
+}
+
 /* ── Barre de recherche & filtres ── */
 div[data-testid="stTextInput"] input,
 div[data-testid="stSelectbox"] > div > div {
