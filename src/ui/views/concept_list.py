@@ -16,12 +16,12 @@ _SORT_COLUMNS: dict[str, tuple[str, callable]] = {
 }
 
 _STATUS_BADGE: dict[str, str] = {
-    ":Active":      '<span style="background:#a6e3a1;color:#1e1e2e;padding:2px 10px;'
-                    'border-radius:12px;font-size:11px;font-weight:700;letter-spacing:.4px;">● Actif</span>',
-    ":Provisional": '<span style="background:#f9e2af;color:#1e1e2e;padding:2px 10px;'
-                    'border-radius:12px;font-size:11px;font-weight:700;letter-spacing:.4px;">● Provisoire</span>',
-    ":Deprecated":  '<span style="background:#f38ba8;color:#1e1e2e;padding:2px 10px;'
-                    'border-radius:12px;font-size:11px;font-weight:700;letter-spacing:.4px;">● Déprécié</span>',
+    ":Active":      '<span style="display:inline-block;width:14px;height:14px;'
+                    'background:#a6e3a1;border-radius:50%;"></span>',
+    ":Provisional": '<span style="display:inline-block;width:14px;height:14px;'
+                    'background:#f9e2af;border-radius:50%;"></span>',
+    ":Deprecated":  '<span style="display:inline-block;width:14px;height:14px;'
+                    'background:#f38ba8;border-radius:50%;"></span>',
 }
 
 _CSS = """
