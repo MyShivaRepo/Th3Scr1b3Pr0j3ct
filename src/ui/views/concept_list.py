@@ -31,6 +31,25 @@ div[data-testid="stHorizontalBlock"] {
     align-items: center !important;
 }
 
+/* ── Compactage des lignes (container border) ── */
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    padding: 0 !important;
+    margin-bottom: 4px !important;
+}
+div[data-testid="stVerticalBlockBorderWrapper"] > div > div[data-testid="stVerticalBlock"] {
+    padding: 4px 8px !important;
+    gap: 0 !important;
+}
+
+/* ── Boutons compacts ── */
+.btn-edit button, .btn-del button {
+    height: 28px !important;
+    min-height: 28px !important;
+    padding: 0 8px !important;
+    line-height: 1 !important;
+    font-size: 14px !important;
+}
+
 /* ── Barre de recherche & filtres ── */
 div[data-testid="stTextInput"] input,
 div[data-testid="stSelectbox"] > div > div {
