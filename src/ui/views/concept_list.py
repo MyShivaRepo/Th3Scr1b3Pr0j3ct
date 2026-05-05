@@ -40,32 +40,32 @@ def render_concept_list(concepts: list[Concept]) -> str | None:
         return None
 
     # En-tête tableau
-    header = st.columns([3, 1, 1, 2])
-    header[0].markdown("**Label préféré**")
-    header[1].markdown("**ID court**")
-    header[2].markdown("**Statut**")
-    header[3].markdown("**Modifié le**")
+    header = st.columns([1, 3, 1, 1, 2])
+    header[0].markdown("**Action**")
+    header[1].markdown("**Label préféré**")
+    header[2].markdown("**ID court**")
+    header[3].markdown("**Statut**")
+    header[4].markdown("**Modifié le**")
     st.divider()
 
     selected_uri = None
     for concept in filtered:
-        cols = st.columns([3, 1, 1, 2])
+        cols = st.columns([1, 3, 1, 1, 2])
         label = concept.pref_label("fr")
         sid = short_id(concept.uri)
         status_lbl = ConceptStatus.label(concept.status)
         modified = concept.modified_at[:10] if concept.modified_at else "—"
 
-        cols[0].write(label)
-        cols[1].code(sid, language=None)
+        if cols[0].button("Éditer", key=f"edit_{concept.uri}", use_container_width=True):
+            selected_uri = concept.uri
+        cols[1].write(label)
+        cols[2].code(sid, language=None)
         status_colors = {
             ":Active": "🟢",
             ":Provisional": "🟡",
             ":Deprecated": "🔴",
         }
-        cols[2].write(f"{status_colors.get(concept.status.value, '')} {status_lbl}")
-        cols[3].write(modified)
-
-        if cols[0].button("Éditer", key=f"edit_{concept.uri}", use_container_width=False):
-            selected_uri = concept.uri
+        cols[3].write(f"{status_colors.get(concept.status.value, '')} {status_lbl}")
+        cols[4].write(modified)
 
     return selected_uri
