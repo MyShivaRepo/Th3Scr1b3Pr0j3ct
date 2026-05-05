@@ -69,7 +69,7 @@ def render_concept_edit(concept: Concept, all_concepts: list[Concept]) -> bool:
     if st.button("💾 Sauvegarder les modifications", type="primary", key=f"save_{concept.uri}"):
         concept.uri = increment_version(concept.uri)
         concept.modified_at = datetime.now(timezone.utc).isoformat()
-        st.success(f"Entité sauvegardée — nouvelle version : `{concept.uri}`")
+        st.toast(f"✅ Entité sauvegardée — version {concept.uri.split('#')[-1]}", icon="💾")
         saved = True
 
     return saved

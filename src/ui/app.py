@@ -102,7 +102,7 @@ elif view == "edit":
 
         saved = render_concept_edit(concept, st.session_state.concepts)
         if saved:
-            # Mettre à jour l'URI sélectionnée après incrémentation de version
             st.session_state.selected_uri = concept.uri
             save_concepts()
+            st.session_state.view = "list"
             st.rerun()
