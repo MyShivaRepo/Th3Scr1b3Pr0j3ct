@@ -48,6 +48,13 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
 
     st.divider()
 
+    h = st.columns([1, 1, 3, 1, 1, 2])
+    h[2].markdown("**Label (fr)**")
+    h[3].markdown("**ID court**")
+    h[4].markdown("**Statut**")
+    h[5].markdown("**Modifié le**")
+    st.divider()
+
     edit_uri = None
     delete_uri = None
     for concept in filtered:
