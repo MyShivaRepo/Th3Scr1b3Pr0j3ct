@@ -78,10 +78,10 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
 
     st.divider()
 
-    # En-têtes cliquables
-    h = st.columns([1, 1, 3, 1, 1, 2])
+    # En-têtes cliquables — layout : [Éditer, Supprimer, Label, Définition, ID, Statut, Modifié]
+    h = st.columns([1, 1, 3, 4, 1, 1, 2])
     for col_key, (col_label, _) in _SORT_COLUMNS.items():
-        idx = {"label": 2, "id": 3, "status": 4, "modified": 5}[col_key]
+        idx = {"label": 2, "id": 4, "status": 5, "modified": 6}[col_key]
         if h[idx].button(
             col_label + _sort_icon(col_key),
             key=f"sort_{col_key}",
@@ -89,13 +89,16 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         ):
             _on_sort_click(col_key)
             st.rerun()
+    h[3].markdown("**Définition (fr)**")
     st.divider()
 
     edit_uri = None
     delete_uri = None
     for concept in filtered:
-        cols = st.columns([1, 1, 3, 1, 1, 2])
+        cols = st.columns([1, 1, 3, 4, 1, 1, 2])
         label = concept.pref_label("fr")
+        definition = next((d.value for d in concept.definitions if d.lang == "fr"), "")
+        definition_short = definition[:120] + "…" if len(definition) > 120 else definition
         sid = short_id(concept.uri)
         status_lbl = ConceptStatus.label(concept.status)
         modified = concept.modified_at[:10] if concept.modified_at else "—"
@@ -105,13 +108,14 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         if cols[1].button("Supprimer", key=f"del_{concept.uri}", use_container_width=True):
             delete_uri = concept.uri
         cols[2].write(label)
-        cols[3].code(sid, language=None)
+        cols[3].caption(definition_short)
+        cols[4].code(sid, language=None)
         status_colors = {
             ":Active": "🟢",
             ":Provisional": "🟡",
             ":Deprecated": "🔴",
         }
-        cols[4].write(f"{status_colors.get(concept.status.value, '')} {status_lbl}")
-        cols[5].write(modified)
+        cols[5].write(f"{status_colors.get(concept.status.value, '')} {status_lbl}")
+        cols[6].write(modified)
 
     return edit_uri, delete_uri, add_clicked
