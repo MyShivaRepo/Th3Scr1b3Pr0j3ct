@@ -229,7 +229,7 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         )
 
         cols[4].markdown(
-            f'<code style="font-size:11px;color:#89b4fa;background:#313244;padding:2px 6px;border-radius:4px;">{sid}</code>',
+            f'<code style="font-size:11px;color:#89b4fa;background:#313244;padding:2px 6px;border-radius:4px;white-space:nowrap;display:inline-block;">{sid}</code>',
             unsafe_allow_html=True,
         )
 
