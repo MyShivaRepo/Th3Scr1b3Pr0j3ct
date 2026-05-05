@@ -67,10 +67,16 @@ with st.sidebar:
 view = st.session_state.view
 
 if view == "list":
-    selected = render_concept_list(st.session_state.concepts)
-    if selected:
-        st.session_state.selected_uri = selected
+    edit_uri, delete_uri = render_concept_list(st.session_state.concepts)
+    if edit_uri:
+        st.session_state.selected_uri = edit_uri
         st.session_state.view = "edit"
+        st.rerun()
+    if delete_uri:
+        st.session_state.concepts = [
+            c for c in st.session_state.concepts if c.uri != delete_uri
+        ]
+        save_concepts()
         st.rerun()
 
 elif view == "create":
