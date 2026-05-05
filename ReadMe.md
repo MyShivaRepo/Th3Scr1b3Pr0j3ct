@@ -62,11 +62,29 @@ pip install -e ".[dev]"
 
 ## Lancement
 
+### En local
+
 ```bash
 streamlit run src/ui/app.py
 ```
 
-L'application s'ouvre dans le navigateur sur `http://localhost:8501`.  
+L'application s'ouvre sur [http://localhost:8501](http://localhost:8501).
+
+### En container Docker (recommandé)
+
+```bash
+docker compose up --build -d
+```
+
+L'application est accessible sur [http://localhost:1111](http://localhost:1111).  
+Le flag `--build` est nécessaire pour reconstruire l'image après chaque modification du code.
+
+Pour arrêter le container :
+
+```bash
+docker compose down
+```
+
 Les 12 entités du référentiel initial sont chargées automatiquement au premier démarrage.
 
 ---
