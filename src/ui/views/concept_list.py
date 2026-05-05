@@ -7,9 +7,33 @@ import streamlit as st
 from src.model.concept import Concept, ConceptStatus
 from src.model.identity import short_id
 
+# Colonnes triables : clé interne → (label affiché, fonction de tri)
+_SORT_COLUMNS: dict[str, tuple[str, callable]] = {
+    "label":    ("Label (fr)",   lambda c: c.pref_label("fr").lower()),
+    "id":       ("ID court",     lambda c: short_id(c.uri).lower()),
+    "status":   ("Statut",       lambda c: c.status.value),
+    "modified": ("Modifié le",   lambda c: c.modified_at or ""),
+}
+
+
+def _sort_icon(col_key: str) -> str:
+    """Retourne l'icône de tri pour un en-tête de colonne."""
+    if st.session_state.get("sort_col") != col_key:
+        return " ⇅"
+    return " ▲" if st.session_state.get("sort_asc", True) else " ▼"
+
+
+def _on_sort_click(col_key: str) -> None:
+    """Bascule le tri sur la colonne cliquée."""
+    if st.session_state.get("sort_col") == col_key:
+        st.session_state["sort_asc"] = not st.session_state.get("sort_asc", True)
+    else:
+        st.session_state["sort_col"] = col_key
+        st.session_state["sort_asc"] = True
+
 
 def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None, bool]:
-    """Affiche la liste filtrée des entités.
+    """Affiche la liste filtrée et triable des entités.
 
     Retourne (uri_à_éditer, uri_à_supprimer, ajouter_cliqué).
     """
@@ -20,7 +44,7 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         status_options = ["Tous"] + [ConceptStatus.label(s) for s in ConceptStatus]
         status_filter = st.selectbox("Statut", status_options, key="status_filter")
 
-    # Application des filtres
+    # Filtrage
     filtered = concepts
     if search:
         search_lower = search.lower()
@@ -33,6 +57,12 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
             s for s in ConceptStatus if ConceptStatus.label(s) == status_filter
         )
         filtered = [c for c in filtered if c.status == target_status]
+
+    # Tri
+    sort_col = st.session_state.get("sort_col", "label")
+    sort_asc = st.session_state.get("sort_asc", True)
+    sort_fn = _SORT_COLUMNS.get(sort_col, _SORT_COLUMNS["label"])[1]
+    filtered = sorted(filtered, key=sort_fn, reverse=not sort_asc)
 
     n_filtered = len(filtered)
     n_total = len(concepts)
@@ -48,11 +78,17 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
 
     st.divider()
 
+    # En-têtes cliquables
     h = st.columns([1, 1, 3, 1, 1, 2])
-    h[2].markdown("**Label (fr)**")
-    h[3].markdown("**ID court**")
-    h[4].markdown("**Statut**")
-    h[5].markdown("**Modifié le**")
+    for col_key, (col_label, _) in _SORT_COLUMNS.items():
+        idx = {"label": 2, "id": 3, "status": 4, "modified": 5}[col_key]
+        if h[idx].button(
+            col_label + _sort_icon(col_key),
+            key=f"sort_{col_key}",
+            use_container_width=True,
+        ):
+            _on_sort_click(col_key)
+            st.rerun()
     st.divider()
 
     edit_uri = None
