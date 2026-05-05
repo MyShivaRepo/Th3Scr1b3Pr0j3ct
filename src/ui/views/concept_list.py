@@ -193,7 +193,7 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
             # Bouton Éditer
             with cols[0]:
                 st.markdown('<div class="btn-edit">', unsafe_allow_html=True)
-                if st.button("✏️ Éditer", key=f"edit_{concept.uri}", use_container_width=True):
+                if st.button("✏️", key=f"edit_{concept.uri}", use_container_width=True):
                     edit_uri = concept.uri
                 st.markdown("</div>", unsafe_allow_html=True)
 
