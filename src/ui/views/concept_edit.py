@@ -19,6 +19,15 @@ from src.model.concept import Concept, ConceptStatus
 from src.model.identity import increment_version, short_id
 from src.ui.views.representation_edit import render_representation_section
 
+_LANGUAGES = ["fr", "en", "de", "es", "it", "pt", "nl", "ar", "zh", "ja", "la"]
+
+
+def _lang_idx(lang: str) -> int:
+    try:
+        return _LANGUAGES.index(lang)
+    except ValueError:
+        return 0
+
 
 def render_concept_edit(concept: Concept, all_concepts: list[Concept]) -> bool:
     """Affiche le formulaire d'édition complet. Retourne True si des modifications ont été sauvegardées."""
@@ -85,7 +94,7 @@ def _edit_labels(concept: Concept) -> bool:
     for i, lbl in enumerate(concept.labels):
         cols = st.columns([2, 1, 1, 1])
         new_val = cols[0].text_input("Valeur", value=lbl.value, key=f"lbl_val_{concept.uri}_{i}")
-        new_lang = cols[1].text_input("Langue", value=lbl.lang, key=f"lbl_lang_{concept.uri}_{i}", max_chars=5)
+        new_lang = cols[1].selectbox("Langue", _LANGUAGES, index=_lang_idx(lbl.lang), key=f"lbl_lang_{concept.uri}_{i}")
         new_pref = cols[2].checkbox("Préféré", value=lbl.preferred, key=f"lbl_pref_{concept.uri}_{i}")
         if cols[3].button("✕", key=f"lbl_del_{concept.uri}_{i}"):
             indices_to_delete.append(i)
@@ -101,7 +110,7 @@ def _edit_labels(concept: Concept) -> bool:
     with st.form(f"form_add_label_{concept.uri}"):
         c1, c2, c3 = st.columns([3, 1, 1])
         new_lbl = c1.text_input("Nouveau label", key=f"new_lbl_{concept.uri}")
-        new_lang = c2.text_input("Langue", value="fr", key=f"new_lang_{concept.uri}", max_chars=5)
+        new_lang = c2.selectbox("Langue", _LANGUAGES, index=0, key=f"new_lang_{concept.uri}")
         new_pref = c3.checkbox("Préféré", value=False, key=f"new_pref_{concept.uri}")
         if st.form_submit_button("Ajouter"):
             if new_lbl.strip():
@@ -116,7 +125,7 @@ def _edit_definitions(concept: Concept) -> bool:
     for i, defn in enumerate(concept.definitions):
         cols = st.columns([4, 1, 1])
         new_val = cols[0].text_area("Texte", value=defn.value, key=f"def_val_{concept.uri}_{i}", height=100)
-        new_lang = cols[1].text_input("Langue", value=defn.lang, key=f"def_lang_{concept.uri}_{i}", max_chars=5)
+        new_lang = cols[1].selectbox("Langue", _LANGUAGES, index=_lang_idx(defn.lang), key=f"def_lang_{concept.uri}_{i}")
         if cols[2].button("✕", key=f"def_del_{concept.uri}_{i}"):
             indices_to_delete.append(i)
             modified = True
@@ -130,7 +139,7 @@ def _edit_definitions(concept: Concept) -> bool:
     with st.form(f"form_add_def_{concept.uri}"):
         c1, c2 = st.columns([4, 1])
         new_def = c1.text_area("Nouvelle définition", key=f"new_def_{concept.uri}", height=80)
-        new_lang = c2.text_input("Langue", value="fr", key=f"new_deflang_{concept.uri}", max_chars=5)
+        new_lang = c2.selectbox("Langue", _LANGUAGES, index=0, key=f"new_deflang_{concept.uri}")
         if st.form_submit_button("Ajouter"):
             if new_def.strip():
                 concept.definitions.append(DefinitionAssertion(value=new_def.strip(), lang=new_lang))
@@ -145,7 +154,7 @@ def _edit_notes(concept: Concept) -> bool:
         note_type = "scopeNote" if note.scope else "note"
         cols = st.columns([4, 1, 1, 1])
         new_val = cols[0].text_area(f"[{note_type}]", value=note.value, key=f"note_val_{concept.uri}_{i}", height=80)
-        new_lang = cols[1].text_input("Langue", value=note.lang, key=f"note_lang_{concept.uri}_{i}", max_chars=5)
+        new_lang = cols[1].selectbox("Langue", _LANGUAGES, index=_lang_idx(note.lang), key=f"note_lang_{concept.uri}_{i}")
         new_scope = cols[2].checkbox("scopeNote", value=note.scope, key=f"note_scope_{concept.uri}_{i}")
         if cols[3].button("✕", key=f"note_del_{concept.uri}_{i}"):
             indices_to_delete.append(i)
@@ -161,7 +170,7 @@ def _edit_notes(concept: Concept) -> bool:
     with st.form(f"form_add_note_{concept.uri}"):
         c1, c2, c3 = st.columns([4, 1, 1])
         new_note = c1.text_area("Nouvelle note", key=f"new_note_{concept.uri}", height=60)
-        new_lang = c2.text_input("Langue", value="fr", key=f"new_notelang_{concept.uri}", max_chars=5)
+        new_lang = c2.selectbox("Langue", _LANGUAGES, index=0, key=f"new_notelang_{concept.uri}")
         new_scope = c3.checkbox("scopeNote", value=False, key=f"new_scope_{concept.uri}")
         if st.form_submit_button("Ajouter"):
             if new_note.strip():
