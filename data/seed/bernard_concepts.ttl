@@ -12,7 +12,7 @@
 
 # --- 1. xLM — eXtended Lifecycle Management -----------------------------------
 
-<urn:concept:scribe:A1B2C3D4-0001-0001-0001-000000000001#v1>
+<urn:concept:scribe:F0DC56DF-855D-48D0-8F4A-6D5C4586A116#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -23,12 +23,12 @@
     skos:altLabel       "xLM"@en ;
     skos:definition     """xLM (eXtended Lifecycle Management) est un cadre conceptuel développé par Bernard Chabot qui étend le PLM classique en intégrant les dimensions sémantiques, ontologiques et d'intelligence artificielle dans la gestion du cycle de vie des produits et des connaissances. Il articule la gestion du cycle de vie avec des technologies du Web Sémantique (OWL, SWRL) et des approches d'IA explicable (XAI) pour créer un système de management unifié. L'objectif est de dépasser les limitations des PLM traditionnels en permettant une traçabilité complète du sens et des décisions tout au long du cycle de vie."""@fr ;
     skos:scopeNote      """xLM a été formalisé à partir des expériences industrielles de Bernard Chabot dans les domaines du PLM, de l'ingénierie système et de la gestion des connaissances d'entreprise. Il constitue le cadre intégrateur du projet SEAMLESS disponible sur GitHub (iPlumb3r/SEAMLESS)."""@fr ;
-    scribe:isExtensionOf <urn:concept:scribe:A1B2C3D4-0004-0004-0004-000000000004#v1> ;
-    scribe:articulatesWith <urn:concept:scribe:A1B2C3D4-0007-0007-0007-000000000007#v1> ;
-    scribe:usesTechnology <urn:concept:scribe:A1B2C3D4-0005-0005-0005-000000000005#v1> ;
-    scribe:usesTechnology <urn:concept:scribe:A1B2C3D4-0006-0006-0006-000000000006#v1> ;
+    scribe:isExtensionOf <urn:concept:scribe:F023FD76-4120-4679-BAAC-910705D0C614#v1> ;
+    scribe:articulatesWith <urn:concept:scribe:3E9DF843-FB6A-4D4D-A291-8697FBFEEB82#v1> ;
+    scribe:usesTechnology <urn:concept:scribe:FB041717-D7D6-4E30-B1B3-483175CD629A#v1> ;
+    scribe:usesTechnology <urn:concept:scribe:2E60FEC3-0881-482D-9911-2DBF7E6E10B1#v1> ;
     scribe:isRepresentedBy [
-        scribe:representation      <urn:concept:scribe:A1B2C3D4-0011-0011-0011-000000000011#v1> ;
+        scribe:representation      <urn:concept:scribe:617411EF-13EF-43A8-A27B-0401C94ADEBD#v1> ;
         scribe:representationKind  scribe:Document ;
         scribe:representationContext "Présentation publique du concept sur GitHub"@fr ;
         scribe:representationCreatedBy "Bernard Chabot" ;
@@ -37,7 +37,7 @@
 
 # --- 2. KRVF — Knowledge Representation & Visualization Framework ------------
 
-<urn:concept:scribe:A1B2C3D4-0002-0002-0002-000000000002#v1>
+<urn:concept:scribe:4ABDCC9B-DDFE-4349-9C08-BC6C0795ACEB#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -49,17 +49,17 @@
     skos:definition     """KRVF (Knowledge Representation & Visualization Framework) est un cadre méthodologique conçu par Bernard Chabot pour structurer, représenter et visualiser les connaissances d'entreprise de manière formelle et lisible. Il fournit un ensemble de principes, de patterns et d'outils pour modéliser les référentiels conceptuels en s'appuyant sur les standards du Web Sémantique. KRVF vise à rendre les modèles de connaissance à la fois rigoureux pour les machines et accessibles pour les experts métier."""@fr ;
     skos:scopeNote      """KRVF est l'un des deux cadres fondateurs de la pratique professionnelle de Bernard Chabot en ingénierie des connaissances, l'autre étant REAF. Il nourrit directement la conception de Th3Sr1b3Pr0j3ct."""@fr ;
     skos:note           """Le 'V' de Visualization est central : KRVF insiste sur l'importance des représentations visuelles comme pont entre la formalisation ontologique et la compréhension humaine."""@fr ;
-    scribe:isFrameworkFor <urn:concept:scribe:A1B2C3D4-0010-0010-0010-000000000010#v1> ;
-    scribe:usesTechnology <urn:concept:scribe:A1B2C3D4-0008-0008-0008-000000000008#v1> ;
+    scribe:isFrameworkFor <urn:concept:scribe:5585093C-C96C-45C9-A983-B0143AF6310E#v1> ;
+    scribe:usesTechnology <urn:concept:scribe:D97D2662-78BE-4871-861F-28D824767ED1#v1> ;
     scribe:isRepresentedBy [
-        scribe:representation      <urn:concept:scribe:A1B2C3D4-0012-0012-0012-000000000012#v1> ;
+        scribe:representation      <urn:concept:scribe:A069A361-F322-438F-A519-C41AC18E9DE5#v1> ;
         scribe:representationKind  scribe:Diagram ;
         scribe:representationContext "Diagramme conceptuel illustrant les couches de KRVF"@fr
     ] .
 
 # --- 3. REAF — Reference Enterprise Architecture Framework -------------------
 
-<urn:concept:scribe:A1B2C3D4-0003-0003-0003-000000000003#v1>
+<urn:concept:scribe:FBA3B5AF-12D1-473B-91E4-13EA11D98092#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -70,11 +70,11 @@
     skos:altLabel       "REAF"@en ;
     skos:definition     """REAF (Reference Enterprise Architecture Framework) est un cadre d'architecture d'entreprise de référence développé par Bernard Chabot. Il organise les composants d'une architecture d'entreprise autour d'invariants métier stables, garantissant la cohérence et la traçabilité des décisions d'architecture dans le temps. REAF distingue ce qui ne change pas (les invariants) de ce qui évolue (les implémentations), permettant une gouvernance durable de l'architecture."""@fr ;
     skos:scopeNote      """REAF est issu de la pratique industrielle de Bernard Chabot dans l'architecture d'entreprise. Il constitue avec KRVF les deux piliers de son approche méthodologique."""@fr ;
-    scribe:isBuiltUpon <urn:concept:scribe:A1B2C3D4-0009-0009-0009-000000000009#v1> .
+    scribe:isBuiltUpon <urn:concept:scribe:2395DD2C-30A0-419E-A1D0-15A8FB502946#v1> .
 
 # --- 4. PLM — Product Lifecycle Management -----------------------------------
 
-<urn:concept:scribe:A1B2C3D4-0004-0004-0004-000000000004#v1>
+<urn:concept:scribe:F023FD76-4120-4679-BAAC-910705D0C614#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -88,7 +88,7 @@
 
 # --- 5. Ontologie OWL --------------------------------------------------------
 
-<urn:concept:scribe:A1B2C3D4-0005-0005-0005-000000000005#v1>
+<urn:concept:scribe:FB041717-D7D6-4E30-B1B3-483175CD629A#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -99,11 +99,11 @@
     skos:altLabel       "Web Ontology Language"@en ;
     skos:definition     """OWL (Web Ontology Language) est un langage du W3C permettant de définir des ontologies formelles sur le Web Sémantique. Il permet d'exprimer des classes, des propriétés, des individus et des axiomes logiques en RDF, ouvrant la voie au raisonnement automatique. OWL est fondé sur les logiques de description (Description Logics) et permet de déduire des connaissances implicites à partir de faits explicites."""@fr ;
     skos:scopeNote      """OWL est la technologie centrale utilisée dans xLM et KRVF pour formaliser les modèles de connaissance d'entreprise de manière interopérable et raisonnée."""@fr ;
-    scribe:isPartOf <urn:concept:scribe:A1B2C3D4-0008-0008-0008-000000000008#v1> .
+    scribe:isPartOf <urn:concept:scribe:D97D2662-78BE-4871-861F-28D824767ED1#v1> .
 
 # --- 6. Règles SWRL ----------------------------------------------------------
 
-<urn:concept:scribe:A1B2C3D4-0006-0006-0006-000000000006#v1>
+<urn:concept:scribe:2E60FEC3-0881-482D-9911-2DBF7E6E10B1#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -114,11 +114,11 @@
     skos:altLabel       "Semantic Web Rule Language"@en ;
     skos:definition     """SWRL (Semantic Web Rule Language) est un langage du W3C permettant d'exprimer des règles métier sur des ontologies OWL. Il combine la puissance expressive des ontologies OWL avec la capacité des règles Datalog pour permettre des inférences plus expressives que ce que OWL seul autorise. SWRL est utilisé pour encoder des invariants métier et des règles de cohérence au sein des systèmes de gestion des connaissances."""@fr ;
     skos:scopeNote      """Dans le cadre xLM, les règles SWRL encodent les invariants métier et les règles de cohérence qui gouvernent les relations entre objets du cycle de vie du produit."""@fr ;
-    scribe:extendsTechnology <urn:concept:scribe:A1B2C3D4-0005-0005-0005-000000000005#v1> .
+    scribe:extendsTechnology <urn:concept:scribe:FB041717-D7D6-4E30-B1B3-483175CD629A#v1> .
 
 # --- 7. XAI — Intelligence artificielle explicable --------------------------
 
-<urn:concept:scribe:A1B2C3D4-0007-0007-0007-000000000007#v1>
+<urn:concept:scribe:3E9DF843-FB6A-4D4D-A291-8697FBFEEB82#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -132,7 +132,7 @@
 
 # --- 8. Web Sémantique -------------------------------------------------------
 
-<urn:concept:scribe:A1B2C3D4-0008-0008-0008-000000000008#v1>
+<urn:concept:scribe:D97D2662-78BE-4871-861F-28D824767ED1#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -144,7 +144,7 @@
 
 # --- 9. Invariant métier -----------------------------------------------------
 
-<urn:concept:scribe:A1B2C3D4-0009-0009-0009-000000000009#v1>
+<urn:concept:scribe:2395DD2C-30A0-419E-A1D0-15A8FB502946#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -156,7 +156,7 @@
 
 # --- 10. Ingénierie des connaissances ----------------------------------------
 
-<urn:concept:scribe:A1B2C3D4-0010-0010-0010-000000000010#v1>
+<urn:concept:scribe:5585093C-C96C-45C9-A983-B0143AF6310E#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -169,7 +169,7 @@
 
 # --- 11. Document xLM_FR — Représentation de xLM (entité #11) ----------------
 
-<urn:concept:scribe:A1B2C3D4-0011-0011-0011-000000000011#v1>
+<urn:concept:scribe:617411EF-13EF-43A8-A27B-0401C94ADEBD#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
@@ -182,7 +182,7 @@
 
 # --- 12. Diagramme KRVF couches — Représentation de KRVF (entité #12) --------
 
-<urn:concept:scribe:A1B2C3D4-0012-0012-0012-000000000012#v1>
+<urn:concept:scribe:A069A361-F322-438F-A519-C41AC18E9DE5#v1>
     a scribe:Concept ;
     scribe:hasStatus    scribe:Active ;
     scribe:createdAt    "2026-05-04T00:00:00+00:00"^^xsd:dateTime ;
