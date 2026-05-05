@@ -9,10 +9,11 @@ from src.model.identity import short_id
 
 # Colonnes triables : clé interne → (label affiché, fonction de tri)
 _SORT_COLUMNS: dict[str, tuple[str, callable]] = {
-    "label":    ("Label (fr)",   lambda c: c.pref_label("fr").lower()),
-    "id":       ("ID court",     lambda c: short_id(c.uri).lower()),
-    "status":   ("Statut",       lambda c: c.status.value),
-    "modified": ("Modifié le",   lambda c: c.modified_at or ""),
+    "label":      ("Label (fr)",       lambda c: c.pref_label("fr").lower()),
+    "definition": ("Définition (fr)",  lambda c: next((d.value for d in c.definitions if d.lang == "fr"), "").lower()),
+    "id":         ("ID court",         lambda c: short_id(c.uri).lower()),
+    "status":     ("Statut",           lambda c: c.status.value),
+    "modified":   ("Modifié le",       lambda c: c.modified_at or ""),
 }
 
 
@@ -81,7 +82,7 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
     # En-têtes cliquables — layout : [Éditer, Supprimer, Label, Définition, ID, Statut, Modifié]
     h = st.columns([1, 1, 3, 4, 1, 1, 2])
     for col_key, (col_label, _) in _SORT_COLUMNS.items():
-        idx = {"label": 2, "id": 4, "status": 5, "modified": 6}[col_key]
+        idx = {"label": 2, "definition": 3, "id": 4, "status": 5, "modified": 6}[col_key]
         if h[idx].button(
             col_label + _sort_icon(col_key),
             key=f"sort_{col_key}",
@@ -89,7 +90,6 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         ):
             _on_sort_click(col_key)
             st.rerun()
-    h[3].markdown("**Définition (fr)**")
     st.divider()
 
     edit_uri = None
