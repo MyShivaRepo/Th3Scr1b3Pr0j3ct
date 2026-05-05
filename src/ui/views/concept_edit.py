@@ -21,6 +21,14 @@ from src.ui.views.representation_edit import render_representation_section
 
 _LANGUAGES = ["fr", "en", "de", "es", "it", "pt", "nl", "ar", "zh", "ja", "la"]
 
+_INVERSE: dict[RelationType, RelationType] = {
+    RelationType.BROADER:    RelationType.NARROWER,
+    RelationType.NARROWER:   RelationType.BROADER,
+    RelationType.RELATED:    RelationType.RELATED,
+    RelationType.IS_PART_OF: RelationType.HAS_PART,
+    RelationType.HAS_PART:   RelationType.IS_PART_OF,
+}
+
 
 def _lang_idx(lang: str) -> int:
     try:
@@ -33,8 +41,6 @@ def render_concept_edit(concept: Concept, all_concepts: list[Concept]) -> bool:
     """Affiche le formulaire d'édition complet. Retourne True si des modifications ont été sauvegardées."""
     st.subheader(f"Édition : {concept.pref_label('fr')}")
     st.caption(f"URI : `{concept.uri}` — ID court : `{short_id(concept.uri)}`")
-
-    saved = False
 
     # ---- Statut ----
     with st.expander("Statut", expanded=True):
@@ -50,28 +56,27 @@ def render_concept_edit(concept: Concept, all_concepts: list[Concept]) -> bool:
 
     # ---- Labels ----
     with st.expander("Labels (prefLabel / altLabel)", expanded=True):
-        saved |= _edit_labels(concept)
+        _edit_labels(concept)
 
     # ---- Définitions ----
     with st.expander("Définitions (skos:definition)"):
-        saved |= _edit_definitions(concept)
+        _edit_definitions(concept)
 
     # ---- Notes ----
     with st.expander("Notes (skos:note / skos:scopeNote)"):
-        saved |= _edit_notes(concept)
+        _edit_notes(concept)
 
     # ---- Relations ----
     with st.expander("Relations à d'autres entités (couche 2.3.2)"):
-        saved |= _edit_relations(concept, all_concepts)
+        _edit_relations(concept, all_concepts)
 
     # ---- Actes de représentation ----
     with st.expander("Actes de représentation (couche 2.3.3)"):
-        repr_modified = render_representation_section(concept, all_concepts)
-        saved |= repr_modified
+        render_representation_section(concept, all_concepts)
 
     # ---- Mappings ----
     with st.expander("Mappings inter-référentiels (couche 2.3.4)"):
-        saved |= _edit_mappings(concept)
+        _edit_mappings(concept)
 
     # ---- Bouton sauvegarde global ----
     st.divider()
@@ -79,9 +84,9 @@ def render_concept_edit(concept: Concept, all_concepts: list[Concept]) -> bool:
         concept.uri = increment_version(concept.uri)
         concept.modified_at = datetime.now(timezone.utc).isoformat()
         st.toast(f"✅ Entité sauvegardée — version {concept.uri.split('#')[-1]}", icon="💾")
-        saved = True
+        return True
 
-    return saved
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -207,12 +212,22 @@ def _edit_relations(concept: Concept, all_concepts: list[Concept]) -> bool:
             chosen_type = c1.selectbox("Type de relation", list(type_options.keys()), key=f"rel_type_{concept.uri}")
             chosen_target = c2.selectbox("Entité cible", list(target_options.keys()), key=f"rel_target_{concept.uri}")
             if st.form_submit_button("Ajouter la relation"):
-                concept.relations.append(
-                    RelationAssertion(
-                        relation_type=type_options[chosen_type],
-                        target_uri=target_options[chosen_target],
-                    )
-                )
+                rel_type   = type_options[chosen_type]
+                target_uri = target_options[chosen_target]
+                concept.relations.append(RelationAssertion(relation_type=rel_type, target_uri=target_uri))
+                # Ajout automatique de la relation inverse si elle existe
+                inv_type = _INVERSE.get(rel_type)
+                if inv_type:
+                    target_concept = next((c for c in all_concepts if c.uri == target_uri), None)
+                    if target_concept:
+                        already = any(
+                            r.relation_type == inv_type and r.target_uri == concept.uri
+                            for r in target_concept.relations
+                        )
+                        if not already:
+                            target_concept.relations.append(
+                                RelationAssertion(relation_type=inv_type, target_uri=concept.uri)
+                            )
                 modified = True
     else:
         st.caption("Créez au moins une autre entité pour ajouter des relations.")
