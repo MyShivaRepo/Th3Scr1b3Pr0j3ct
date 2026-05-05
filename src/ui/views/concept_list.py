@@ -8,10 +8,10 @@ from src.model.concept import Concept, ConceptStatus
 from src.model.identity import short_id
 
 
-def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None]:
+def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None, bool]:
     """Affiche la liste filtrée des entités.
 
-    Retourne (uri_à_éditer, uri_à_supprimer) — au plus une des deux est non-None.
+    Retourne (uri_à_éditer, uri_à_supprimer, ajouter_cliqué).
     """
     col1, col2 = st.columns([3, 1])
     with col1:
@@ -37,11 +37,14 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
     n_filtered = len(filtered)
     n_total = len(concepts)
     count_label = f"({n_filtered})" if n_filtered == n_total else f"({n_filtered} / {n_total})"
-    st.subheader(f"Référentiel d'entités {count_label}")
+
+    title_col, btn_col = st.columns([5, 1])
+    title_col.subheader(f"Référentiel d'entités {count_label}")
+    add_clicked = btn_col.button("➕ Ajouter", use_container_width=True)
 
     if not filtered:
         st.info("Aucune entité ne correspond aux critères de recherche.")
-        return None, None
+        return None, None, add_clicked
 
     st.divider()
 
@@ -68,4 +71,4 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         cols[4].write(f"{status_colors.get(concept.status.value, '')} {status_lbl}")
         cols[5].write(modified)
 
-    return edit_uri, delete_uri
+    return edit_uri, delete_uri, add_clicked

@@ -16,7 +16,16 @@ st.set_page_config(
     page_title="Th3Sr1b3Pr0j3ct",
     page_icon="📖",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="collapsed",
+)
+
+# Masquer complètement la sidebar et son bouton de bascule
+st.markdown(
+    """<style>
+    [data-testid="stSidebar"] { display: none; }
+    [data-testid="collapsedControl"] { display: none; }
+    </style>""",
+    unsafe_allow_html=True,
 )
 
 # ---------------------------------------------------------------------------
@@ -41,33 +50,12 @@ def save_concepts() -> None:
 
 
 # ---------------------------------------------------------------------------
-# Barre latérale
-# ---------------------------------------------------------------------------
-with st.sidebar:
-    st.title("📖 Th3Sr1b3Pr0j3ct")
-    st.caption("Référentiel conceptuel — Itération 1")
-    st.divider()
-
-    if st.button("📋 Liste des entités", use_container_width=True):
-        st.session_state.view = "list"
-        st.session_state.selected_uri = None
-
-    if st.button("➕ Nouvelle entité", use_container_width=True):
-        st.session_state.view = "create"
-        st.session_state.selected_uri = None
-
-    st.divider()
-    total = len(st.session_state.concepts)
-    st.metric("Entités", total)
-
-
-# ---------------------------------------------------------------------------
 # Routage des vues
 # ---------------------------------------------------------------------------
 view = st.session_state.view
 
 if view == "list":
-    edit_uri, delete_uri = render_concept_list(st.session_state.concepts)
+    edit_uri, delete_uri, add_clicked = render_concept_list(st.session_state.concepts)
     if edit_uri:
         st.session_state.selected_uri = edit_uri
         st.session_state.view = "edit"
@@ -77,6 +65,10 @@ if view == "list":
             c for c in st.session_state.concepts if c.uri != delete_uri
         ]
         save_concepts()
+        st.rerun()
+    if add_clicked:
+        st.session_state.view = "create"
+        st.session_state.selected_uri = None
         st.rerun()
 
 elif view == "create":
