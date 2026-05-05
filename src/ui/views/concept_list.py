@@ -13,8 +13,6 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
 
     Retourne (uri_à_éditer, uri_à_supprimer) — au plus une des deux est non-None.
     """
-    st.subheader("Référentiel d'entités")
-
     col1, col2 = st.columns([3, 1])
     with col1:
         search = st.text_input("Rechercher", placeholder="Filtrer par label…", key="search_text")
@@ -36,20 +34,15 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
         )
         filtered = [c for c in filtered if c.status == target_status]
 
-    st.caption(f"{len(filtered)} entité(s) affichée(s) sur {len(concepts)}")
+    n_filtered = len(filtered)
+    n_total = len(concepts)
+    count_label = f"({n_filtered})" if n_filtered == n_total else f"({n_filtered} / {n_total})"
+    st.subheader(f"Référentiel d'entités {count_label}")
 
     if not filtered:
         st.info("Aucune entité ne correspond aux critères de recherche.")
         return None, None
 
-    # En-tête tableau
-    header = st.columns([1, 1, 3, 1, 1, 2])
-    header[0].markdown("**Éditer**")
-    header[1].markdown("**Supprimer**")
-    header[2].markdown("**Label préféré**")
-    header[3].markdown("**ID court**")
-    header[4].markdown("**Statut**")
-    header[5].markdown("**Modifié le**")
     st.divider()
 
     edit_uri = None
