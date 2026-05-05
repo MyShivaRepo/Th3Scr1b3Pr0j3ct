@@ -212,9 +212,10 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
             )
 
             # Définition
+            _def_html = def_short if def_short else '<em style="color:#45475a">—</em>'
             cols[3].markdown(
                 f'<p style="font-size:12px;color:#a6adc8;font-style:italic;margin:0;'
-                f'line-height:1.5;">{def_short or "<em style=\'color:#45475a\'>—</em>"}</p>',
+                f'line-height:1.5;">{_def_html}</p>',
                 unsafe_allow_html=True,
             )
 
