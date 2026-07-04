@@ -189,7 +189,7 @@ def _sort_link(col_key: str, col_label: str) -> str:
     is_act  = st.session_state.get("sort_col") == col_key
     cls     = "active" if is_act else ""
     return (
-        f'<a href="?action=sort&col={col_key}" class="{cls}">'
+        f'<a href="?action=sort&col={col_key}" class="{cls}" target="_self">'
         f'{col_label}<span class="sort-icon">{icon}</span></a>'
     )
 
@@ -295,8 +295,8 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
 
         rows.append(f"""<tr class="data-row">
             <td class="cell-actions">
-                <a href="?action=edit&uri={uri_enc}" class="btn-act btn-edit" title="Éditer">✏️</a>
-                <a href="?action=confirm_delete&uri={uri_enc}" class="btn-act btn-del" title="Supprimer">🗑️</a>
+                <a href="?action=edit&uri={uri_enc}" class="btn-act btn-edit" title="Éditer" target="_self">✏️</a>
+                <a href="?action=confirm_delete&uri={uri_enc}" class="btn-act btn-del" title="Supprimer" target="_self">🗑️</a>
             </td>
             <td class="cell-label">{label}</td>
             <td class="cell-def">{def_short if def_short else '<em style="color:#45475a">—</em>'}</td>
@@ -311,8 +311,8 @@ def render_concept_list(concepts: list[Concept]) -> tuple[str | None, str | None
                 <td colspan="6">
                     <span class="confirm-msg">⚠️ Supprimer « {label} » ?</span>
                     <span class="confirm-sub">Cette action est irréversible.</span>
-                    <a href="?action=delete&uri={del_enc}" class="btn-confirm">✅ Confirmer</a>
-                    <a href="?action=cancel_delete" class="btn-cancel">❌ Annuler</a>
+                    <a href="?action=delete&uri={del_enc}" class="btn-confirm" target="_self">✅ Confirmer</a>
+                    <a href="?action=cancel_delete" class="btn-cancel" target="_self">❌ Annuler</a>
                 </td>
             </tr>""")
 
